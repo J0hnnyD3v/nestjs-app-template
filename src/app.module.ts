@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { validate } from './config/env/env.validations';
 import { LoggerModule } from './core/logger/logger.module';
 import { HealthModule } from './core/health/health.module';
+import { ErrorHandlerModule } from './error-handler/error-handler.module';
 
 @Module({
   imports: [
@@ -23,10 +24,12 @@ import { HealthModule } from './core/health/health.module';
         entities: ['dist/**/*.entity{.ts,.js}'],
         // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
         synchronize: true,
+        retryDelay: 5000,
       }),
     }),
     LoggerModule,
     HealthModule,
+    ErrorHandlerModule,
   ],
 })
 export class AppModule {}
