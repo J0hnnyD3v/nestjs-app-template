@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { IsEnum, IsNumber, Max, Min, validateSync } from 'class-validator';
+import { IsEnum, IsNumber, IsString, Max, Min, validateSync } from 'class-validator';
 
 enum Environment {
   Development = 'development',
@@ -27,6 +27,26 @@ class EnvironmentVariables {
 
   @IsEnum(LogLevelEnum)
   LOGGER_LEVEL: LogLevelEnum;
+
+  @IsString()
+  DATABASE_HOST: string;
+
+  @IsString()
+  DATABASE_NAME: string;
+
+  @IsNumber()
+  @Min(0)
+  @Max(65535)
+  DATABASE_PORT: number;
+
+  @IsString()
+  DATABASE_USERNAME: string;
+
+  @IsString()
+  DATABASE_PASSWORD: string;
+
+  @IsString()
+  JWT_SECRET_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {

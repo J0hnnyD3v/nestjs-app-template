@@ -1,4 +1,14 @@
-import { IsEmail, IsString, IsStrongPassword, Length } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsEmail,
+  IsEnum,
+  IsOptional,
+  IsString,
+  IsStrongPassword,
+  Length,
+} from 'class-validator';
+import { ValidRoles } from 'src/auth/interfaces';
 import { Match } from 'src/common/decorators/match.decorator';
 
 export class UserDto {
@@ -19,8 +29,7 @@ export class UserDto {
       minSymbols: 1,
     },
     {
-      message:
-        'The confirmPassword must have a Uppercase, lowercase letter, a special character, a number and min length 8',
+      message: 'The password must have a Uppercase, lowercase letter, a special character, a number and min length 8',
     },
   )
   password: string;
@@ -48,4 +57,10 @@ export class UserDto {
   @IsString()
   @Length(4, 50)
   lastName: string;
+
+  @IsEnum(ValidRoles, { each: true })
+  @ArrayNotEmpty()
+  @IsArray()
+  @IsOptional()
+  roles?: ValidRoles[];
 }

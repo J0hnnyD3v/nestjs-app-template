@@ -8,6 +8,7 @@ import { LoggerModule } from './core/logger/logger.module';
 import { HealthModule } from './core/health/health.module';
 import { ErrorHandlerModule } from './error-handler/error-handler.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { UserModule } from './user/user.module';
     HealthModule,
     ErrorHandlerModule,
     UserModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

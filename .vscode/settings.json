@@ -21,5 +21,6 @@
   "peacock.color": "#ff3d00",
   "cSpell.words": [
     "postgres"
-  ]
+  ],
+  "material-icon-theme.activeIconPack": "nest"
 }
